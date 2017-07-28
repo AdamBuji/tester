@@ -20,6 +20,6 @@ jobs:
     steps:
       - checkout
     commands:
-      - ./script.sh 
+      - ./script1.sh 
       # specify any bash command here prefixed with `run: `
      # - run: go version
