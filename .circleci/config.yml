@@ -7,4 +7,4 @@ jobs:
             - checkout
             - run:
                 command: |
-                    .circleci/commit_check.sh
+                    .circleci/script1.sh
