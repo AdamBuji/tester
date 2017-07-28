@@ -19,7 +19,8 @@ jobs:
     ####   /go/src/bitbucket.org/circleci/go-tool
     steps:
       - checkout
-
+    commands:
+      - ./script.sh 
       # specify any bash command here prefixed with `run: `
-      - run: go version
-      - run: bash ls -la
+     # - run: go version
+     
