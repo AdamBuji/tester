@@ -23,6 +23,3 @@ jobs:
       - ./script.sh 
       # specify any bash command here prefixed with `run: `
      # - run: go version
-     
-    deployment:
-      - ./script1.sh
