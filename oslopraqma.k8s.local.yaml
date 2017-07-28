@@ -1,0 +1,79 @@
+apiVersion: kops/v1alpha2
+kind: Cluster
+metadata:
+  creationTimestamp: 2017-07-28T13:13:06Z
+  name: oslopraqma.k8s.local
+spec:
+  api:
+    loadBalancer:
+      type: Public
+  authorization:
+    alwaysAllow: {}
+  channel: stable
+  cloudProvider: aws
+  configBase: s3://praqmabucket/oslopraqma.k8s.local
+  etcdClusters:
+  - etcdMembers:
+    - instanceGroup: master-eu-central-1a
+      name: a
+    name: main
+  - etcdMembers:
+    - instanceGroup: master-eu-central-1a
+      name: a
+    name: events
+  kubernetesApiAccess:
+  - 0.0.0.0/0
+  kubernetesVersion: 1.7.0
+  masterPublicName: api.oslopraqma.k8s.local
+  networkCIDR: 172.20.0.0/16
+  networking:
+    kubenet: {}
+  nonMasqueradeCIDR: 100.64.0.0/10
+  sshAccess:
+  - 0.0.0.0/0
+  subnets:
+  - cidr: 172.20.32.0/19
+    name: eu-central-1a
+    type: Public
+    zone: eu-central-1a
+  topology:
+    dns:
+      type: Public
+    masters: public
+    nodes: public
+
+---
+
+apiVersion: kops/v1alpha2
+kind: InstanceGroup
+metadata:
+  creationTimestamp: 2017-07-28T13:13:06Z
+  labels:
+    kops.k8s.io/cluster: oslopraqma.k8s.local
+  name: master-eu-central-1a
+spec:
+  image: kope.io/k8s-1.6-debian-jessie-amd64-hvm-ebs-2017-05-02
+  machineType: t2.micro
+  maxSize: 1
+  minSize: 1
+  role: Master
+  subnets:
+  - eu-central-1a
+
+---
+
+apiVersion: kops/v1alpha2
+kind: InstanceGroup
+metadata:
+  creationTimestamp: 2017-07-28T13:13:07Z
+  labels:
+    kops.k8s.io/cluster: oslopraqma.k8s.local
+  name: nodes
+spec:
+  image: kope.io/k8s-1.6-debian-jessie-amd64-hvm-ebs-2017-05-02
+  machineType: t2.micro
+  maxSize: 3
+  minSize: 3
+  role: Node
+  subnets:
+  - eu-central-1a
