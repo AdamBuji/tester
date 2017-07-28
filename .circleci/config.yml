@@ -20,6 +20,9 @@ jobs:
     steps:
       - checkout
     commands:
-      - ./script1.sh 
+      #- ./script1.sh 
       # specify any bash command here prefixed with `run: `
      # - run: go version
+      -run:
+         command: |
+            bash /home/adam/tester/.circleci/script1.sh
