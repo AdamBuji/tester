@@ -1,9 +1,13 @@
-version: 2.0
+version: 2
 jobs:
   build:
-    working_directory:~/tmp
     docker:
-      - image: circleci/python:3.6.1
+      # specify the version
+      - image: circleci/golang:1.8 
+
     steps:
-      - checkout 
-      - run: echo "hello world"
+      - checkout
+
+      # specify any bash command here prefixed with `run: `
+      - run: go version
+
