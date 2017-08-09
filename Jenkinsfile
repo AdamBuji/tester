@@ -1,1 +1,1 @@
-agent { label 'my-defined-label' }
+agent { echo 'hello' }
