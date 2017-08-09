@@ -1,3 +1,1 @@
-pipeline {
-   agent any
-}
+agent { label 'my-defined-label' }
